@@ -1,0 +1,21 @@
+{
+  "name": "bocbot",
+  "version": "1.0.0",
+  "description": "boc's bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "boc"
+  ],
+  "author": "boc",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "dotenv": "^6.2.0",
+    "fetch": "^1.1.0",
+    "fs": "0.0.1-security",
+    "he": "^1.2.0"
+  }
+}
