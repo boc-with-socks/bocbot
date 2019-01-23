@@ -5,6 +5,7 @@ module.exports = class Message
         this._author = message.author
         this._channel = message.channel.id
         this._content = message.content
+        this._raw = message
     }
 
     getCommand() {
@@ -17,8 +18,10 @@ module.exports = class Message
 
                 case 'trivia':
                     return 1
+
                 case 'triviastop':
                     return 2
+                    
                 default:
                     return false
             }
@@ -27,5 +30,10 @@ module.exports = class Message
 
             return false
         }
+    }
+
+    getMessage() {
+
+        return this._raw
     }
 }

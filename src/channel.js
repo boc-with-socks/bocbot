@@ -21,6 +21,17 @@ module.exports = class Channel
         if (cmd) {
 
             this.processCommand(cmd)
+            return true
+        }
+
+        this.processText(message.getMessage())
+    }
+
+    processText(message) {
+
+        if (this._game != null) {
+
+            this._game.process(message)
         }
     }
 
@@ -29,13 +40,21 @@ module.exports = class Channel
         switch (cmd) {
 
             case 1:
-                //todo start trivia
-                this.sendMessage("starting trivia")
+
+                this.sendMessage("Trivia starting")
+                this._game = new Trivia(this._message, "")
+                this._game.start()
                 break
+
             case 2:
-                //todo stop trivia
-                this.sendMessage("stopping trivia")
+
+                if (this._game != null) {
+                    
+                    this._game.stop()
+                    this.sendMessage("Trivia stopping after the current question")
+                }
                 break
+
             default:
                 break
         }   
