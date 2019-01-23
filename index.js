@@ -16,7 +16,8 @@ client.on('ready', () => {
     console.log('I am ready!');
 });
 
-const handler = require('./handler.js')
+const Handler = require('./src/handler.js')
+const h = new Handler()
 
 // Create an event listener for messages
 client.on('message', message => {
@@ -25,7 +26,8 @@ client.on('message', message => {
     // Send "pong" to the same channel
   //  message.channel.send('pong');
   //}
-    handler.process(message)
+    //handler.process(message)
+    h.process(message)
 });
 
 
