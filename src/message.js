@@ -36,4 +36,30 @@ module.exports = class Message
 
         return this._raw
     }
+
+    getOptions() {
+
+        if (this.getCommand()) {
+            
+            var str = this._content.substr(this._content.indexOf(' ') + 1)
+            var ar = str.split(' ')
+            var options = []
+
+            ar.forEach(item => {
+
+                var cmd = item.split('-')[1]
+                
+                if (cmd != undefined) {
+
+                    options.push(cmd)
+                }
+            })
+
+            return options
+        }
+        else {
+
+            return false
+        }
+    }
 }

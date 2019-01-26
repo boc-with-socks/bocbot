@@ -1,5 +1,5 @@
-var fetchUrl = require("fetch").fetchUrl
 var he = require('he')
+const OpenTDB = require('./trivia_questions/opentdb.js')
 
 module.exports = class Trivia
 {
@@ -15,6 +15,9 @@ module.exports = class Trivia
         this._answered = false
         this._scores = {}
         this._stopping = false
+
+        this._difficulty = "easy"
+        this._category = 31
     }
 
     start() {
@@ -26,14 +29,21 @@ module.exports = class Trivia
     }
 
     questionLoader() {
+        console.log(this._options)
 
-        fetchUrl('https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple', (err, meta, body) => {
+        var resource = new OpenTDB("")
+
+        resource.load().then(res => {
+        
+            console.log(res.data)
+        })
+        /*fetchUrl('https://opentdb.com/api.php?amount=10&category='+this._category+'&difficulty='+this._difficulty+'&type=multiple', (err, meta, body) => {
             
             console.log(JSON.parse(body.toString()))
             this._questions = JSON.parse(body.toString()).results
             this.decodeQuestions()
             this.gameLoop()
-        })
+        })*/
     }
 
     questionPicker() {

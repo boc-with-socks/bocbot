@@ -16,13 +16,13 @@ module.exports = class Channel
 
     process(message) {
 
-        var cmd = message.getCommand()
+        if (message.getCommand()) {
 
-        if (cmd) {
 
-            this.processCommand(cmd)
+            this.processCommand(message)
             return true
         }
+
 
         this.processText(message.getMessage())
     }
@@ -33,16 +33,20 @@ module.exports = class Channel
 
             this._game.process(message)
         }
+        else {
+            //console.log(message)
+            //if (message.author.) 
+        }
     }
 
-    processCommand(cmd) {
+    processCommand(message) {
 
-        switch (cmd) {
+        switch (message.getCommand()) {
 
             case 1:
 
                 this.sendMessage("Trivia starting")
-                this._game = new Trivia(this._message, "")
+                this._game = new Trivia(this._message, "", message.getOptions())
                 this._game.start()
                 break
 
