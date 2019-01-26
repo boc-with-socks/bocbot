@@ -1,5 +1,5 @@
-var he = require('he')
 const OpenTDB = require('./trivia_questions/opentdb.js')
+const Damkus = require('./trivia_questions/damkus.js')
 
 module.exports = class Trivia
 {
@@ -15,9 +15,6 @@ module.exports = class Trivia
         this._answered = false
         this._scores = {}
         this._stopping = false
-
-        this._difficulty = "easy"
-        this._category = 31
     }
 
     start() {
@@ -31,19 +28,21 @@ module.exports = class Trivia
     questionLoader() {
         console.log(this._options)
 
-        var resource = new OpenTDB("")
-
+        //var resource = new OpenTDB(this._options)
+        var resource = new Damkus(this._options)
+        this.sendMessage("Loading questions")
+        
         resource.load().then(res => {
         
-            console.log(res.data)
-        })
-        /*fetchUrl('https://opentdb.com/api.php?amount=10&category='+this._category+'&difficulty='+this._difficulty+'&type=multiple', (err, meta, body) => {
-            
-            console.log(JSON.parse(body.toString()))
-            this._questions = JSON.parse(body.toString()).results
-            this.decodeQuestions()
+            this._questions = JSON.parse(res.data)
+            this._questions = resource.parseQuestions(this._questions)
+            console.log(this._questions)
             this.gameLoop()
-        })*/
+        }).catch(err => {
+
+            this.sendMessage(`damkus fix pls -> err: ${err.response.data}`)
+            //console.log(err.response.data)
+        })
     }
 
     questionPicker() {
@@ -69,10 +68,10 @@ module.exports = class Trivia
         
         var answer = message.content.toLowerCase()
 
-        if (answer === this._currentQ.correct_answer) {
+        if (answer === this._currentQ.answer) {
 
             var winner = message.author.username
-            this.sendMessage("great answer " + winner + '. (answer: ' + this._currentQ.correct_answer + ')')
+            this.sendMessage("great answer " + winner + '. (answer: ' + this._currentQ.answer + ')')
             this._answered = true
 
             if (this._scores[winner]) {
@@ -98,14 +97,14 @@ module.exports = class Trivia
 
                 if (!qPosted) {
 
-                    this.sendMessage('Question: ' + this._currentQ.question + ` (${this._currentQ.correct_answer.length} letters)`)
+                    this.sendMessage('Question: ' + this._currentQ.question + ` (${this._currentQ.answer.length} letters)`)
                     qPosted = true
                 }
                 else {
 
                     if (hintCount > 3) {
 
-                        this.sendMessage('Time\'s up niggas, it was ' + this._currentQ.correct_answer)
+                        this.sendMessage('Time\'s up niggas, it was ' + this._currentQ.answer)
                         this._answered = true
                     } 
 
@@ -146,14 +145,14 @@ module.exports = class Trivia
         for (var k in this._scores) {
             str += k + ':' + this._scores[k] + ' '
         }
-        this.sendMessage('Scores -> ' + str)
+        this.sendMessage('Scores: ' + str)
     }
 
     hintHandler() {
 
         if (this._currentH == null) {
 
-            var h = this._currentQ.correct_answer
+            var h = this._currentQ.answer
             this._currentH = h.replace(/[a-z0-9]/gi, '_')
         }
         else {
@@ -176,14 +175,14 @@ module.exports = class Trivia
                 }
                 while(this._currentH[idx] != '_' && timeoutCounter < 50)
                 
-                this._currentH = this._currentH.substr(0, idx) + this._currentQ.correct_answer[idx] + this._currentH.substr(idx + 1, len)
+                this._currentH = this._currentH.substr(0, idx) + this._currentQ.answer[idx] + this._currentH.substr(idx + 1, len)
                 console.log(this._currentH)
             }
 
         }
     }
 
-    decodeQuestions() {
+    /*decodeQuestions() {
 
         this._questions.forEach(item => {
 
@@ -191,7 +190,7 @@ module.exports = class Trivia
             item.correct_answer = he.decode(item.correct_answer)
             item.correct_answer = item.correct_answer.toLowerCase()
         })
-    }
+    }*/
 
     /*removeWhichQuestions() {
 
