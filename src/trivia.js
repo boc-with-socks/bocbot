@@ -125,6 +125,7 @@ module.exports = class Trivia
 
                     this.sendMessage("End of trivia")
                     clearInterval(game)
+                    this._stopping = true
                     return false
                 }
 
@@ -202,6 +203,11 @@ module.exports = class Trivia
         var hint = this._currentH
         hint = hint.replace(/[_]/gi, '\\_')
         this.sendMessage('Hint: ' + hint)
+    }
+
+    isRunning() {
+
+        return !this._stopping
     }
 
     sendMessage(content) {

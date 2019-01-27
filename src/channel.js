@@ -45,9 +45,17 @@ module.exports = class Channel
 
             case 1:
 
-                this.sendMessage("Trivia starting")
-                this._game = new Trivia(this._message, "", message.getOptions())
-                this._game.start()
+                if (this._game == null || !this._game.isRunning()) {
+
+                    this.sendMessage("Trivia starting")
+                    this._game = null
+                    this._game = new Trivia(this._message, "", message.getOptions())
+                    this._game.start()
+                }
+                else {
+
+                    this.sendMessage("Game already running")
+                }
                 break
 
             case 2:
@@ -56,6 +64,7 @@ module.exports = class Channel
                     
                     this._game.stop()
                     this.sendMessage("Trivia stopping after the current question")
+                    this._game = null
                 }
                 break
 
