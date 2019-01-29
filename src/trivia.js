@@ -124,6 +124,7 @@ module.exports = class Trivia
                 if (this._idHistory.length == this._questions.length || this._stopping) {
 
                     this.sendMessage("End of trivia")
+                    this.printScores()
                     clearInterval(game)
                     this._stopping = true
                     return false
