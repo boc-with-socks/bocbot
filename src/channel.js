@@ -69,8 +69,13 @@ module.exports = class Channel
                 break
 
             case 3:
-            
+
                 this.sendMessage("Damkus sucks cocks")
+                break
+
+            case 4:
+
+                this.sendMessage("http://damkus.xyz/categories.html")
                 break
 
             default:

@@ -24,6 +24,9 @@ module.exports = class Message
                 
                 case 'talk':
                     return 3
+
+                case 'categories':
+                    return 4
                     
                 default:
                     return false
