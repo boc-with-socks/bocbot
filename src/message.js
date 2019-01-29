@@ -21,6 +21,9 @@ module.exports = class Message
 
                 case 'triviastop':
                     return 2
+                
+                case 'talk':
+                    return 3
                     
                 default:
                     return false

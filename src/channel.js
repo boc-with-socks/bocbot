@@ -68,6 +68,11 @@ module.exports = class Channel
                 }
                 break
 
+            case 3:
+            
+                this.sendMessage("Damkus sucks cocks")
+                break
+
             default:
                 break
         }   

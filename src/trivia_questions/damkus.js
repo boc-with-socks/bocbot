@@ -1,5 +1,5 @@
 const axios = require('axios')
-var he = require('he')
+const he = require('he')
 
 module.exports = class Damkus
 {
