@@ -69,7 +69,7 @@ module.exports = class Trivia
         
         var answer = message.content.toLowerCase()
 
-        if (answer === this._currentQ.answer && !this._answered) {
+        if (answer === this._currentQ.answer) {
 
             var winner = message.author.username
             this.sendMessage("great answer " + winner + '. (answer: ' + this._currentQ.answer + ')')
@@ -128,6 +128,7 @@ module.exports = class Trivia
                     this.printScores()
                     clearInterval(game)
                     this._stopping = true
+                    this._answered = true
                     return false
                 }
 
