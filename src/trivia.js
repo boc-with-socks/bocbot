@@ -41,6 +41,7 @@ module.exports = class Trivia
         }).catch(err => {
 
             this.sendMessage(`damkus fix pls -> err: ${err.response.data}`)
+            this._stopping = true
             //console.log(err.response.data)
         })
     }
