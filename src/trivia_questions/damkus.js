@@ -27,7 +27,7 @@ module.exports = class Damkus
                 'category': item[0],
                 'difficulty': this.difficulty_default, //todo
                 'question': he.decode(item[1]).replace(/<\/?[^>]+(>|$)/g, ''), //remove html tags
-                'answer': he.decode(item[2]).toLowerCase().replace(/\([^()]*\)/g, '').slice(0, -1) //remove parenthesises
+                'answer': he.decode(item[2]).toLowerCase().replace(/\([^()]*\)/g, '').trim() //remove parenthesises
             })
         })
 
