@@ -126,9 +126,9 @@ module.exports = class Trivia
 
                     this.sendMessage("End of trivia")
                     this.printScores()
-                    clearInterval(game)
                     this._stopping = true
                     this._answered = true
+                    clearInterval(game)
                     return false
                 }
 
