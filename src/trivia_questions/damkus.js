@@ -26,7 +26,7 @@ module.exports = class Damkus
             parsedQ.push({
                 'category': item[0],
                 'difficulty': this.difficulty_default, //todo
-                'question': he.decode(item[1]),
+                'question': he.decode(item[1]).replace(/<\/?[^>]+(>|$)/g, ''),
                 'answer': he.decode(item[2]).toLowerCase()
             })
         })
