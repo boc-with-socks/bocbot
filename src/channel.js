@@ -29,7 +29,7 @@ module.exports = class Channel
 
     processText(message) {
 
-        if (this._game != null) {
+        if (this._game != null && this._game.isRunning()) {
 
             this._game.process(message)
         }
