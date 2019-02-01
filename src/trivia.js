@@ -15,6 +15,7 @@ module.exports = class Trivia
         this._answered = false
         this._scores = {}
         this._stopping = false
+        this._questionEnded = false
     }
 
     start() {
@@ -69,7 +70,7 @@ module.exports = class Trivia
         
         var answer = message.content.toLowerCase()
 
-        if (answer === this._currentQ.answer) {
+        if (answer === this._currentQ.answer && !this._questionEnded) {
 
             var winner = message.author.username
             this.sendMessage("great answer " + winner + '. (answer: ' + this._currentQ.answer + ')')
@@ -100,6 +101,7 @@ module.exports = class Trivia
 
                     this.sendMessage('Question: ' + this._currentQ.question + ` (${this._currentQ.answer.length} letters)`)
                     qPosted = true
+                    this._questionEnded = false
                 }
                 else {
 
@@ -107,6 +109,7 @@ module.exports = class Trivia
 
                         this.sendMessage('Time\'s up niggas, it was ' + this._currentQ.answer)
                         this._answered = true
+                        this._questionEnded = true
                     } 
 
                     if (counter%5 == 0) {
@@ -124,16 +127,18 @@ module.exports = class Trivia
 
                 if (this._idHistory.length == this._questions.length || this._stopping) {
 
-                    this.sendMessage("End of trivia")
                     this.printScores()
+                    this.sendMessage("End of trivia")
                     this._stopping = true
                     this._answered = true
+                    this._questionEnded = true
                     clearInterval(game)
                     return false
                 }
 
                 this.questionPicker()
                 this.printScores()
+                this._questionEnded = true
                 this._answered = false
                 qPosted = false
                 counter = 0
