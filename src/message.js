@@ -27,6 +27,9 @@ module.exports = class Message
 
                 case 'categories':
                     return 4
+
+                case 'lol':
+                    return 5
                     
                 default:
                     return false

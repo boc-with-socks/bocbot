@@ -1,4 +1,5 @@
 const Trivia = require('./trivia.js')
+const Reddit = require('./reddit.js')
 
 module.exports = class Channel
 {
@@ -76,6 +77,10 @@ module.exports = class Channel
             case 4:
 
                 this.sendMessage("http://damkus.xyz/categories.html")
+                break
+
+            case 5:
+                new Reddit(this._message)
                 break
 
             default:
