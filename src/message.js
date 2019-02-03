@@ -30,6 +30,9 @@ module.exports = class Message
 
                 case 'lol':
                     return 5
+
+                case 'haha':
+                    return 6
                     
                 default:
                     return false

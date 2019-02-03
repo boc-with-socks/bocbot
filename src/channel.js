@@ -1,5 +1,6 @@
 const Trivia = require('./trivia.js')
 const Reddit = require('./reddit.js')
+const Gag = require('./gag.js')
 
 module.exports = class Channel
 {
@@ -81,6 +82,10 @@ module.exports = class Channel
 
             case 5:
                 new Reddit(this._message)
+                break
+
+            case 6:
+                new Gag(this._message)
                 break
 
             default:
