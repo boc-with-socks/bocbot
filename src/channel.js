@@ -1,6 +1,6 @@
-const Trivia = require('./trivia.js')
-const Reddit = require('./reddit.js')
-const Gag = require('./gag.js')
+const Trivia = require('./services/trivia.js')
+const Reddit = require('./services/reddit.js')
+const Gag = require('./services/gag.js')
 
 module.exports = class Channel
 {
