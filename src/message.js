@@ -33,7 +33,10 @@ module.exports = class Message
 
                 case 'haha':
                     return 6
-                    
+
+                case 'gay':
+		    return 7
+
                 default:
                     return false
             }

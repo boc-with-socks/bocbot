@@ -87,6 +87,10 @@ module.exports = class Channel
             case 6:
                 new Gag(this._message)
                 break
+		
+	    case 7:
+		this.sendMessage("@boc#2906 gay if read")
+		break
 
             default:
                 break
