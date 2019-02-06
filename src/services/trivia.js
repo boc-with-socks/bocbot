@@ -41,7 +41,7 @@ module.exports = class Trivia
             this.gameLoop()
         }).catch(err => {
 
-            this.sendMessage(`damkus fix pls -> err: ${err.response.data}`)
+            this.sendMessage(`damkus fix pls: ${err.response.data}`)
             this._stopping = true
             //console.log(err.response.data)
         })
