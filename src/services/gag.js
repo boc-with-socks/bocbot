@@ -11,6 +11,10 @@ module.exports = class Gag
             var post = this.parseData(data)
 
             this.sendMessage(post)
+
+        }).catch(err => {
+
+            this.sendMessage(`damkus fix pls -> err: ${err.response.data}`)
         })
     }
 

@@ -11,7 +11,11 @@ module.exports = class Reddit
             var posts = this.parseData(data.data.data.children)
             var post = this.pickPost(posts)
 
-            this.sendMessage(post) 
+            this.sendMessage(post)
+            
+        }).catch(err => {
+
+            this.sendMessage(`damkus fix pls -> err: ${err.response.data}`)
         })
     }
 
