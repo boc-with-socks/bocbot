@@ -72,7 +72,7 @@ module.exports = class Channel
 
             case 3:
 
-                this.sendMessage("Damkus sucks cocks")
+                this.sendMessage("Funny homoerotic message")
                 break
 
             case 4:
