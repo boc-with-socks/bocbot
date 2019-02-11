@@ -35,7 +35,7 @@ module.exports = class Message
                     return 6
 
                 case 'gay':
-		    return 7
+		            return 7
 
                 default:
                     return false

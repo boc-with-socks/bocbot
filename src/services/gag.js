@@ -14,7 +14,7 @@ module.exports = class Gag
 
         }).catch(err => {
 
-            this.sendMessage(`damkus fix pls: ${err.response.data}`)
+            console.log(`damkus fix pls: ${err.response.data}`)
         })
     }
 

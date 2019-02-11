@@ -81,16 +81,19 @@ module.exports = class Channel
                 break
 
             case 5:
+            
                 new Reddit(this._message)
                 break
 
             case 6:
+            
                 new Gag(this._message)
                 break
 		
-	    case 7:
-		this.sendMessage("@boc#2906 gay if read")
-		break
+    	    case 7:
+
+        		this.sendMessage("@boc#2906 gay if read")
+        		break
 
             default:
                 break
