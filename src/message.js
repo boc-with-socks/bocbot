@@ -37,6 +37,9 @@ module.exports = class Message
                 case 'gay':
 		            return 7
 
+                case 'xd':
+                    return 8
+
                 default:
                     return false
             }

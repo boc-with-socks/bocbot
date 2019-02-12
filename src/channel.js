@@ -1,6 +1,7 @@
 const Trivia = require('./services/trivia.js')
 const Reddit = require('./services/reddit.js')
 const Gag = require('./services/gag.js')
+const Joke = require('./services/joke.js')
 
 module.exports = class Channel
 {
@@ -94,6 +95,11 @@ module.exports = class Channel
 
         		this.sendMessage("@boc#2906 gay if read")
         		break
+
+            case 8:
+
+                new Joke(this._message)
+                break
 
             default:
                 break

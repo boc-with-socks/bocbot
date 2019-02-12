@@ -15,7 +15,7 @@ module.exports = class Reddit
 
         }).catch(err => {
 
-            console.log(`damkus fix pls: ${err.response.data}`)
+            console.log(err)
         })
     }
 

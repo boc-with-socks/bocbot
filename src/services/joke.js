@@ -1,16 +1,17 @@
 const axios = require('axios')
+const he = require('he')
 
-module.exports = class Gag
+module.exports = class Joke
 {
     constructor(message) {
 
         this.message = message
-        this.endpoint = "https://9gag.com/random"
+        this.endpoint = "https://icanhazdadjoke.com/"
         this.load().then(data => {
 
-            var post = this.parseData(data)
+            var joke = this.parseData(data.data)
 
-            this.sendMessage(post)
+            this.sendMessage(joke)
 
         }).catch(err => {
 
@@ -20,12 +21,12 @@ module.exports = class Gag
 
     load() {
 
-        return axios.get(this.endpoint)
+        return axios.get(this.endpoint, {headers: {'Accept': 'application/json'}})
     }
 
     parseData(data) {
 
-        return data.request.res.responseUrl
+        return he.decode(data.joke)
     }
 
     sendMessage(content) {
