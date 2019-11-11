@@ -40,6 +40,18 @@ module.exports = class Message
                 case 'xd':
                     return 8
 
+                case 'uhbijnokn':
+                    return 9
+
+                case 'dota':
+                    return 10
+
+                case 'merc':
+                    return 11
+
+                case 'bible':
+                    return 12
+
                 default:
                     return false
             }

@@ -2,6 +2,12 @@ const Trivia = require('./services/trivia.js')
 const Reddit = require('./services/reddit.js')
 const Gag = require('./services/gag.js')
 const Joke = require('./services/joke.js')
+const Stats = require('./services/stats.js')
+const Dota = require('./services/dota.js')
+const Prayer = require('./services/prayer.js')
+const Bible = require('./services/bible.js')
+
+var damkusCounter = 0
 
 module.exports = class Channel
 {
@@ -40,6 +46,15 @@ module.exports = class Channel
             //console.log(message)
             //if (message.author.) 
         }
+
+        if (message.author.id == 236797886543822848) {
+
+            damkusCounter++
+            if (damkusCounter%10 == 0) {
+
+                this.sendMessage(`shut the fuck up damkus`)
+            }
+        }
     }
 
     processCommand(message) {
@@ -73,7 +88,7 @@ module.exports = class Channel
 
             case 3:
 
-                this.sendMessage("Funny homoerotic message")
+                this.sendMessage("damkus sucks fuckign COcks :boomer:")
                 break
 
             case 4:
@@ -99,6 +114,22 @@ module.exports = class Channel
             case 8:
 
                 new Joke(this._message)
+                break
+
+            case 9:
+                new Stats(this._message)
+                break
+
+            case 10:
+                new Dota(this._message, message.getOptions())
+                break
+
+            case 11:
+                new Prayer(this._message)
+                break
+
+            case 12:
+                new Bible(this._message, message.getOptions())
                 break
 
             default:

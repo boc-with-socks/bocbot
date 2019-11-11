@@ -34,8 +34,9 @@ module.exports = class Trivia
         this.sendMessage("Loading questions")
         
         resource.load().then(res => {
-        
+            //console.log(res.data.results)
             this._questions = JSON.parse(res.data)
+            //this._questions = res.data.results
             this._questions = resource.parseQuestions(this._questions)
             console.log(this._questions)
             this.gameLoop()
@@ -91,6 +92,7 @@ module.exports = class Trivia
         this.questionPicker()
         var qPosted = false
         var counter = 0
+        var qCounter = 1
         var hintCount = 0
 
         var game = setInterval(() => {
@@ -99,8 +101,9 @@ module.exports = class Trivia
 
                 if (!qPosted) {
 
-                    this.sendMessage('Question: ' + this._currentQ.question + ` (${this._currentQ.answer.length} letters)`)
+                    this.sendMessage('Question ' + qCounter + ': ' + this._currentQ.question + ` (${this._currentQ.answer.length} letters)`)
                     qPosted = true
+                    qCounter++
                     this._questionEnded = false
                 }
                 else {
