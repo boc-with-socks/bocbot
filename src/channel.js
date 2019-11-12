@@ -143,7 +143,7 @@ module.exports = class Channel
                 break
 
             case 15:
-                this.sendMessage('current list of jobless nerds:\n-mercury\n-savi\n-porro\n-fip')
+                this.sendMessage('current list of jobless nerds:\n-mercury\n-savi\n-porro\n-fiptry')
                 break
 
             default:
