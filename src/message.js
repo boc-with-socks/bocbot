@@ -52,6 +52,15 @@ module.exports = class Message
                 case 'bible':
                     return 12
 
+                case 'cat':
+                    return 13
+
+                case 'damkus':
+                    return 14
+
+                case 'job':
+                    return 15
+
                 default:
                     return false
             }

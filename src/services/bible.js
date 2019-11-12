@@ -12,7 +12,6 @@ module.exports = class Bible
 
         this.load().then(data => {
 
-            console.log(data.data)
             var verse = data.data
   
             this.run(verse[0])

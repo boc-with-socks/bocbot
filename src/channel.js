@@ -6,6 +6,8 @@ const Stats = require('./services/stats.js')
 const Dota = require('./services/dota.js')
 const Prayer = require('./services/prayer.js')
 const Bible = require('./services/bible.js')
+const Cat = require('./services/cat.js')
+const Kanye = require('./services/kanye.js')
 
 var damkusCounter = 0
 
@@ -130,6 +132,18 @@ module.exports = class Channel
 
             case 12:
                 new Bible(this._message, message.getOptions())
+                break
+
+            case 13:
+                new Cat(this._message)
+                break
+
+            case 14:
+                new Kanye(this._message)
+                break
+
+            case 15:
+                this.sendMessage('current list of jobless nerds:\n-mercury\n-savi\n-porro')
                 break
 
             default:
