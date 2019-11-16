@@ -8,6 +8,7 @@ const Prayer = require('./services/prayer.js')
 const Bible = require('./services/bible.js')
 const Cat = require('./services/cat.js')
 const Kanye = require('./services/kanye.js')
+const Savi = require ('./services/savi.js')
 
 var damkusCounter = 0
 
@@ -144,6 +145,10 @@ module.exports = class Channel
 
             case 15:
                 this.sendMessage('current list of jobless nerds:\n-mercury\n-savi\n-porro\n-fip\n-savisaar\n-toomas\n-noelle')
+                break
+
+            case 16:
+                new Savi(this._message)
                 break
 
             default:

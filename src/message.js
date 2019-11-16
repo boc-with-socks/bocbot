@@ -61,6 +61,9 @@ module.exports = class Message
                 case 'job':
                     return 15
 
+                case 'savi':
+                    return 16
+
                 default:
                     return false
             }
