@@ -53,7 +53,7 @@ module.exports = class Channel
         if (message.author.id == 236797886543822848) {
 
             damkusCounter++
-            if (damkusCounter%15 == 0) {
+            if (damkusCounter%30 == 0) {
 
                 this.sendMessage(`shut the fuck up damkus`)
             }
