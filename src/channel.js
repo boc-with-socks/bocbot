@@ -9,6 +9,7 @@ const Bible = require('./services/bible.js')
 const Cat = require('./services/cat.js')
 const Kanye = require('./services/kanye.js')
 const Savi = require ('./services/savi.js')
+const Chembl = require('./services/chembl.js')
 
 var damkusCounter = 0
 
@@ -153,6 +154,10 @@ module.exports = class Channel
 
             case 17:
                 this.sendMessage('slurp')
+                break
+
+            case 18:
+                new Chembl(this._message)
                 break
 
             default:

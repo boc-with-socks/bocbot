@@ -67,6 +67,9 @@ module.exports = class Message
                 case 'boc':
                     return 17
 
+                case 'affly':
+                    return 18
+
                 default:
                     return false
             }
