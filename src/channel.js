@@ -151,6 +151,10 @@ module.exports = class Channel
                 new Savi(this._message)
                 break
 
+            case 17:
+                this.sendMessage('slurp')
+                break
+
             default:
                 break
         }   
