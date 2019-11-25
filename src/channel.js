@@ -10,6 +10,7 @@ const Cat = require('./services/cat.js')
 const Kanye = require('./services/kanye.js')
 const Savi = require ('./services/savi.js')
 const Chembl = require('./services/chembl.js')
+const Maths = require('./services/math.js')
 
 var damkusCounter = 0
 
@@ -158,6 +159,19 @@ module.exports = class Channel
 
             case 18:
                 new Chembl(this._message)
+                break
+
+            case 19:
+
+                if (this._game == null || !this._game.isRunning()) {
+
+                    this._game = null
+                    this._game = new Maths(this._message)
+                }
+                else {
+
+                    this.sendMessage("Game already running")
+                }
                 break
 
             default:

@@ -70,6 +70,9 @@ module.exports = class Message
                 case 'affly':
                     return 18
 
+                case 'misioh':
+                    return 19
+
                 default:
                     return false
             }
