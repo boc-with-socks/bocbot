@@ -9,7 +9,7 @@ module.exports = class Math
         this._stopping = false
 
         this.message = message
-        this.endpoint = "https://studycounts.com/api/v1/algebra/linear-equations.json?difficulty=advanced"
+        this.endpoint = "https://studycounts.com/api/v1/algebra/linear-equations.json?difficulty=intermediate"
         this.load().then(data => {
 
             this.question = this.parseData(data)
