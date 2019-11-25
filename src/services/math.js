@@ -33,6 +33,8 @@ module.exports = class Math
 
         var parsed = data.data
         parsed.question = parsed.question.replace(/<\/?[a-z]*>/gi, '')
+        parsed.choices = parsed.choices.map(item => item.replace(/<\/mn><mn>/gi, '/'))
+        parsed.choices = parsed.choices.map(item => item.replace(/<mfrac>/gi, ' '))
         parsed.choices = parsed.choices.map(item => item.replace(/<\/?[a-z]*>/gi, ''))
 
         return parsed
