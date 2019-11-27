@@ -36,6 +36,7 @@ module.exports = class Math
         parsed.choices = parsed.choices.map(item => item.replace(/<\/mn><mn>/gi, '/'))
         parsed.choices = parsed.choices.map(item => item.replace(/<mfrac>/gi, ' '))
         parsed.choices = parsed.choices.map(item => item.replace(/<\/?[a-z]*>/gi, ''))
+        parsed.choices = parsed.choices.map(item => item.trim())
 
         return parsed
     }
@@ -72,7 +73,7 @@ module.exports = class Math
 
                     if (counter%20 == 0) {
 
-                        this.sendMessage(`Time's up, it was choice ${this.question.correct_choice} (${this.question.choices[this.question.correct_choice + 1]})`)
+                        this.sendMessage(`Time's up, it was choice ${this.question.correct_choice} (${this.question.choices[this.question.correct_choice]})`)
                         this._answered = true
                         this._questionEnded = true
                         this._stopping = true
