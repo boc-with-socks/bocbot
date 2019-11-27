@@ -13,6 +13,7 @@ const Chembl = require('./services/chembl.js')
 const Maths = require('./services/math.js')
 
 var damkusCounter = 0
+var lolCounter = 0
 
 module.exports = class Channel
 {
@@ -58,6 +59,15 @@ module.exports = class Channel
             if (damkusCounter%30 == 0) {
 
                 this.sendMessage(`shut the fuck up damkus`)
+            }
+        }
+
+        if (message.content.includes('lol')) {
+
+            lolCounter++
+            if (lolCounter%5 == 0) {
+
+                this.sendMessage(`stop saying lol retard <@${message.author.id}>`)
             }
         }
     }
