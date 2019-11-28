@@ -113,6 +113,7 @@ module.exports = class Tictactoe
 
             this.turnMessage.edit(`<@${this.playerTurn}> lost what a noob!`)
             this._stopping = true
+            return null
         }
 
         if (
@@ -123,6 +124,7 @@ module.exports = class Tictactoe
 
             this.turnMessage.edit(`draw haha love this tictactoe game very competitive`)
             this._stopping = true
+            return null
         }
     }
 
