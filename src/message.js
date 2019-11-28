@@ -73,6 +73,9 @@ module.exports = class Message
                 case 'misioh':
                     return 19
 
+                case 'tictac':
+                    return 20
+
                 default:
                     return false
             }

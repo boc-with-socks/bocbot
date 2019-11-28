@@ -15,6 +15,14 @@ module.exports = class Handler
         this.channels[channelIndex].process(new Message(message))
     }
 
+    processEvent(message, user) {
+
+        if (user.bot) return
+        var channelIndex = this.getChannelIndex(message.message)
+
+        this.channels[channelIndex].processEvent(message, user)
+    }
+
     getChannelIndex(message) {
 
         var channelId = message.channel.id

@@ -31,3 +31,8 @@ client.on('error', () => {
 })
 
 client.login(process.env.TOKEN)
+
+client.on('messageReactionAdd', (message, user) => {
+    
+    h.processEvent(message, user)
+})

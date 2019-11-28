@@ -11,6 +11,7 @@ const Kanye = require('./services/kanye.js')
 const Savi = require ('./services/savi.js')
 const Chembl = require('./services/chembl.js')
 const Maths = require('./services/math.js')
+const Tictactoe = require('./services/tictactoe.js')
 
 var damkusCounter = 0
 var lolCounter = 0
@@ -40,6 +41,15 @@ module.exports = class Channel
 
 
         this.processText(message.getMessage())
+    }
+
+    processEvent(message, user) {
+
+        if (this._game != null && this._game.isRunning()) {
+
+            this._game.processEvent(message, user)
+        }
+        return null
     }
 
     processText(message) {
@@ -177,6 +187,18 @@ module.exports = class Channel
 
                     this._game = null
                     this._game = new Maths(this._message)
+                }
+                else {
+
+                    this.sendMessage("Game already running")
+                }
+                break
+
+            case 20:
+                if (this._game == null || !this._game.isRunning()) {
+
+                    this._game = null
+                    this._game = new Tictactoe(this._message)
                 }
                 else {
 
