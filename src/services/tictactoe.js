@@ -39,6 +39,8 @@ module.exports = class Tictactoe
 
         var content = this.getGrid()
 
+        this.sendMessage(`Tictactoe starting... Type 'boc stop' to stop the game`)
+
         this.sendMessage(`${this.firstMessage.author.username} is waiting for a player to join...`).then(message => {
 
             this.turnMessage = message
