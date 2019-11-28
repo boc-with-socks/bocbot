@@ -107,6 +107,10 @@ module.exports = class Tictactoe
             (this.gridArray[3] == this.gridArray[4] && this.gridArray[4] == this.gridArray[5] && this.gridArray[3] != 0) ||
             (this.gridArray[6] == this.gridArray[7] && this.gridArray[7] == this.gridArray[8] && this.gridArray[6] != 0) ||
 
+            (this.gridArray[0] == this.gridArray[3] && this.gridArray[3] == this.gridArray[6] && this.gridArray[0] != 0) ||
+            (this.gridArray[1] == this.gridArray[4] && this.gridArray[4] == this.gridArray[7] && this.gridArray[1] != 0) ||
+            (this.gridArray[2] == this.gridArray[5] && this.gridArray[5] == this.gridArray[8] && this.gridArray[2] != 0) ||
+
             (this.gridArray[0] == this.gridArray[4] && this.gridArray[4] == this.gridArray[8] && this.gridArray[0] != 0) ||
             (this.gridArray[2] == this.gridArray[4] && this.gridArray[4] == this.gridArray[6] && this.gridArray[2] != 0)
            ) {
