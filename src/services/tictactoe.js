@@ -138,6 +138,11 @@ module.exports = class Tictactoe
         return null
     }
 
+    stop() {
+
+        this._stopping = true
+    }
+
     processEvent(message, user) {
 
         if (this._stopping == true) return null

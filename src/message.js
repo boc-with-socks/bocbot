@@ -19,7 +19,7 @@ module.exports = class Message
                 case 'trivia':
                     return 1
 
-                case 'triviastop':
+                case 'stop':
                     return 2
                 
                 case 'talk':

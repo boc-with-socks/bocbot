@@ -106,7 +106,8 @@ module.exports = class Channel
                 if (this._game != null) {
                     
                     this._game.stop()
-                    this.sendMessage("Trivia stopping after the current question")
+                    //this.sendMessage("Trivia stopping after the current question")
+                    this.sendMessage("Game stopping")
                     this._game = null
                 }
                 break
