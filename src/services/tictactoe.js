@@ -14,7 +14,7 @@ const _reactionsArray = [':white_large_square:', ':regional_indicator_x:', ':o2:
 
 module.exports = class Tictactoe
 {
-    constructor(message) {
+    constructor(message, firstMessage) {
 
         this.message = message
         this._stopping = false
@@ -23,12 +23,13 @@ module.exports = class Tictactoe
         this.players = []
         this.playerTurn = null
         this.turnMessage = null
+        this.firstMessage = firstMessage
         this.initGame()
     }
 
     initGame() {
 
-        this.players.push(this.message.author.id)
+        this.players.push(this.firstMessage.author.id)
 
         this.gridArray = [
             0, 0, 0,
@@ -38,7 +39,7 @@ module.exports = class Tictactoe
 
         var content = this.getGrid()
 
-        this.sendMessage(`${this.message.author.username} is waiting for a player to join...`).then(message => {
+        this.sendMessage(`${this.firstMessage.author.username} is waiting for a player to join...`).then(message => {
 
             this.turnMessage = message
         })

@@ -198,7 +198,7 @@ module.exports = class Channel
                 if (this._game == null || !this._game.isRunning()) {
 
                     this._game = null
-                    this._game = new Tictactoe(this._message)
+                    this._game = new Tictactoe(this._message, message.getMessage())
                 }
                 else {
 
