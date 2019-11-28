@@ -38,8 +38,6 @@ module.exports = class Tictactoe
 
         var content = this.getGrid()
 
-        //this.sendMessage(`<@${this.message.author.id}> turn`).then(message => {
-
         this.sendMessage(`${this.message.author.username} is waiting for a player to join...`).then(message => {
 
             this.turnMessage = message
