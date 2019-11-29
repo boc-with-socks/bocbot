@@ -76,6 +76,9 @@ module.exports = class Message
                 case 'tictac':
                     return 20
 
+                case 'wow':
+                    return 21
+
                 default:
                     return false
             }

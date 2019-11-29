@@ -12,6 +12,7 @@ const Savi = require ('./services/savi.js')
 const Chembl = require('./services/chembl.js')
 const Maths = require('./services/math.js')
 const Tictactoe = require('./services/tictactoe.js')
+const Wow = require('./services/wow.js')
 
 var damkusCounter = 0
 var lolCounter = 0
@@ -206,6 +207,10 @@ module.exports = class Channel
                     this.sendMessage("Game already running")
                 }
                 break
+
+            case 21:
+                new Wow(this._message)
+                break                
 
             default:
                 break
