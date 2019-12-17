@@ -209,6 +209,11 @@ module.exports = class Trivia
         this._questions.forEach()
     }*/
 
+    processEvent(m, s) {
+
+        return null
+    }
+
     printHint() {
 
         var hint = this._currentH
