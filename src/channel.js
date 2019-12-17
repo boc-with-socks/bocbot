@@ -66,20 +66,20 @@ module.exports = class Channel
 
         if (message.author.id == 236797886543822848) {
 
-            damkusCounter++
             if (damkusCounter%30 == 0) {
 
                 this.sendMessage(`shut the fuck up damkus`)
             }
+            damkusCounter++
         }
 
         if (message.content.includes('lol')) {
 
-            lolCounter++
             if (lolCounter%5 == 0) {
 
                 this.sendMessage(`stop saying lol retard <@${message.author.id}>`)
             }
+            lolCounter++
         }
     }
 
