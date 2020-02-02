@@ -13,9 +13,11 @@ const Chembl = require('./services/chembl.js')
 const Maths = require('./services/math.js')
 const Tictactoe = require('./services/tictactoe.js')
 const Wow = require('./services/wow.js')
+const Owo = require('./services/owo.js')
 
 var damkusCounter = 0
 var lolCounter = 0
+var messageCounter = 0
 
 module.exports = class Channel
 {
@@ -80,6 +82,22 @@ module.exports = class Channel
                 this.sendMessage(`stop saying lol retard <@${message.author.id}>`)
             }
             lolCounter++
+        }
+
+        if (1==1) {
+
+            if (messageCounter%80 == 0) {
+
+                if (message.content.length > 15) {
+
+                   new Owo(message)
+                   messageCounter++
+                }
+
+            } else {
+
+                messageCounter++
+            }
         }
     }
 
