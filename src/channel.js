@@ -84,7 +84,7 @@ module.exports = class Channel
             lolCounter++
         }
 
-        if (1==1) {
+        if (message.channel.id == 382303724661637123) {
 
             if (messageCounter%80 == 0) {
 
