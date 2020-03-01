@@ -79,6 +79,9 @@ module.exports = class Message
                 case 'wow':
                     return 21
 
+                case 'help':
+                    return 99
+
                 default:
                     return false
             }

@@ -18,6 +18,7 @@ const Owo = require('./services/owo.js')
 var damkusCounter = 0
 var lolCounter = 0
 var messageCounter = 0
+var commandList = "trivia, stop, talk, categories, lol, haha, gay, xd, uhbijnokn, dota, merc, bible, cat, damkus, job, savi, boc, affly, misioh, tictac, help"
 
 module.exports = class Channel
 {
@@ -228,7 +229,11 @@ module.exports = class Channel
 
             case 21:
                 new Wow(this._message)
-                break                
+                break
+
+            case 99:
+                this.sendMessage(`commands: ${commandList}`)
+                break
 
             default:
                 break
