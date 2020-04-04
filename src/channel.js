@@ -14,10 +14,11 @@ const Maths = require('./services/math.js')
 const Tictactoe = require('./services/tictactoe.js')
 const Wow = require('./services/wow.js')
 const Owo = require('./services/owo.js')
+const Virus = require('./services/virus.js')
 
-var damkusCounter = 0
-var lolCounter = 0
-var messageCounter = 0
+var damkusCounter = 1
+var lolCounter = 1
+var messageCounter = 1
 var commandList = "trivia, stop, talk, categories, lol, haha, gay, xd, uhbijnokn, dota, merc, bible, cat, damkus, job, savi, boc, affly, misioh, tictac, help"
 
 module.exports = class Channel
@@ -69,7 +70,7 @@ module.exports = class Channel
 
         if (message.author.id == 236797886543822848) {
 
-            if (damkusCounter%30 == 0) {
+            if (damkusCounter%45 == 0) {
 
                 this.sendMessage(`shut the fuck up damkus`)
             }
@@ -78,7 +79,7 @@ module.exports = class Channel
 
         if (message.content.includes('lol')) {
 
-            if (lolCounter%5 == 0) {
+            if (lolCounter%7 == 0) {
 
                 this.sendMessage(`stop saying lol retard <@${message.author.id}>`)
             }
@@ -87,7 +88,7 @@ module.exports = class Channel
 
         if (message.channel.id == 382303724661637123) {
 
-            if (messageCounter%80 == 0) {
+            if (messageCounter%100 == 0) {
 
                 if (message.content.length > 15) {
 
@@ -229,6 +230,10 @@ module.exports = class Channel
 
             case 21:
                 new Wow(this._message)
+                break
+
+            case 22:
+                new Virus(this._message)
                 break
 
             case 99:

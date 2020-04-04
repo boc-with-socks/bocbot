@@ -79,6 +79,9 @@ module.exports = class Message
                 case 'wow':
                     return 21
 
+                case 'virus':
+                    return 22
+
                 case 'help':
                     return 99
 
