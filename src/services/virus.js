@@ -6,11 +6,12 @@ module.exports = class Virus
 
         this.message = message
 
-        this.endpoint = ""
+        this.endpoint = "https://api.thevirustracker.com/free-api?countryTotal=US"
         
         this.load().then(data => {
 
 
+            this.run(data.data)
         }).catch(err => {
 
             console.log(err)
