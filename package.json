@@ -14,11 +14,13 @@
   "dependencies": {
     "axios": "^0.18.1",
     "canvas": "^2.6.1",
+    "chart.js": "^2.9.3",
+    "chartjs-node": "^1.7.1",
     "csv-writer": "^1.6.0",
     "discord.js": "^11.6.3",
     "dotenv": "^6.2.0",
     "fs": "0.0.1-security",
     "he": "^1.2.0",
-    "nchart": "^1.0.1"
+    "jsdom": "^16.2.2"
   }
 }
