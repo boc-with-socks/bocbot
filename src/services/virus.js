@@ -21,6 +21,16 @@ module.exports = class Virus
         })
     }
 
+    load() {
+
+        return axios.get(this.endpoint)
+    }
+
+    sendMessage(content) {
+
+        this.message.channel.send(content)
+    }
+    
     run(data) {
 
         var timeline_raw = data.timelineitems
@@ -75,13 +85,4 @@ var myLineChart = new Chart(ctx).Line(datum, options);
         // data.
     }
 
-    load() {
-
-        return axios.get(this.endpoint)
-    }
-
-    sendMessage(content) {
-
-        this.message.channel.send(content)
-    }
 }
