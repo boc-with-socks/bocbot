@@ -65,7 +65,7 @@ var myLineChart = new Chart(ctx).Line(datum, options);
          
         canvas.toBuffer(function (err, buf) {
           if (err) throw err;
-          fs.writeFile(__dirname + '/pie.png', buf);
+          fs.writeFile(__dirname + '/pie.png', buf, (err) => this.sendMessage(err));
         })
     }
 
