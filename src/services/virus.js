@@ -2,6 +2,7 @@ const axios = require('axios')
 const Canvas = require('canvas')
 const ChartjsNode = require('chartjs-node')
 const {RichEmbed} = require('discord.js')
+const Country = require('./resources/country.js')
 const chartPath = __dirname  + '/../../img/chart.png'
 const plugin = {
         beforeDraw: function(chartInstance) {
@@ -36,6 +37,9 @@ module.exports = class Virus
         , 'YE', 'ZM', 'ZW']
 
         this.country = this.checkOptions(options)
+
+        var cnty = new Country(this.country)
+        this.countryName = cnty.getCountryName(this.country)
 
         this.endpoint = "https://api.thevirustracker.com/free-api?countryTimeline=" + this.country
         
@@ -162,7 +166,12 @@ module.exports = class Virus
                         }
                         ]
                     },
-                    plugins: plugin
+                    plugins: plugin,
+                    title: {
+                        display: true,
+                        fontSize: 16,
+                        text: this.countryName
+                    }
                 }
             })
             .then(() => {
@@ -264,8 +273,9 @@ module.exports = class Virus
         .then(() => {
 
             const embed = new RichEmbed()
-                .setTitle('CORANAVIRUS TRACKER: ' + this.country + ' (' + stats.date + ')')
+                .setAuthor('Brought to you by Bocbot Inc.', 'https://www.redditstatic.com/avatars/avatar_default_09_FF585B.png', 'https://github.com/boc-with-socks/bocbot')
                 .setColor(0xff0000)
+                .setTitle(' :flag_' + this.country.toLowerCase() + ':  CORANAVIRUS TRACKER: ' + this.countryName + ' (' + stats.date + ')')
                 .setDescription('damkus sucks cocks btw')
                 .addField('Today\'s new cases', stats.new_cases + ' (' + stats.new_cases_dod + ' DoD)', true)
                 .addBlankField(true)
