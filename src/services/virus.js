@@ -1,17 +1,41 @@
 const axios = require('axios')
 const Canvas = require('canvas')
-// const Chart = require('nchart')
-// const fs = require('fs')
 const ChartjsNode = require('chartjs-node')
+const {RichEmbed} = require('discord.js')
+const chartPath = __dirname  + '../../../img/chart.png'
+const plugin = {
+        beforeDraw: function(chartInstance) {
+          var ctx = chartInstance.chart.ctx;
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+        }
+}
+const countries = ['AF', 'AL', 'DZ', 'AO', 'AR', 'AM', 'AU', 'AT', 'AZ', 'BS'
+, 'BD', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BW', 'BR', 'BN', 'BG', 'BF'
+, 'BI', 'KH', 'CM', 'CA', 'CI', 'CF', 'TD', 'CL', 'CN', 'CO', 'CG', 'CD', 'CR'
+, 'HR', 'CU', 'CY', 'CZ', 'DK', 'DP', 'DJ', 'DO', 'CD', 'EC', 'EG', 'SV', 'GQ'
+, 'ER', 'EE', 'ET', 'FK', 'FJ', 'FI', 'FR', 'GF', 'TF', 'GA', 'GM', 'GE', 'DE'
+, 'GH', 'GR', 'GL', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN', 'HK', 'HU', 'IS', 'IN'
+, 'ID', 'IR', 'IQ', 'IE', 'IL', 'IT', 'JM', 'JP', 'JO', 'KZ', 'KE', 'KP', 'XK'
+, 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LT', 'LU', 'MK', 'MG', 'MW'
+, 'MY', 'ML', 'MR', 'MX', 'MD', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NP', 'NL'
+, 'NC', 'NZ', 'NI', 'NE', 'NG', 'KP', 'NO', 'OM', 'PK', 'PS', 'PA', 'PG', 'PY'
+, 'PE', 'PH', 'PL', 'PT', 'PR', 'QA', 'XK', 'RO', 'RU', 'RW', 'SA', 'SN', 'RS'
+, 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'KR', 'SS', 'ES', 'LK', 'SD', 'SR'
+, 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TT', 'TN'
+, 'TR', 'TM', 'AE', 'UG', 'GB', 'UA', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'EH'
+, 'YE', 'ZM', 'ZW']
 
 
 module.exports = class Virus
 {
-    constructor(message) {
+    constructor(message, options = []) {
 
         this.message = message
 
-        this.endpoint = "https://api.thevirustracker.com/free-api?countryTimeline=US"
+        this.country = this.checkOptions(options)
+
+        this.endpoint = "https://api.thevirustracker.com/free-api?countryTimeline=" + this.country
         
         this.load().then(data => {
 
@@ -28,125 +52,87 @@ module.exports = class Virus
         return axios.get(this.endpoint)
     }
 
+    checkOptions(options) {
+
+        if (options.length == 1) {
+
+            if countries.includes(options[0]) return options[0]
+        }
+
+        this.sendMessage('Country not found... defaulting to FR')
+        return 'FR'
+    }
+
     sendMessage(content) {
 
         this.message.channel.send(content)
     }
-    
-    run(data) {
 
-        var timeline_raw = data.timelineitems
-        console.log(timeline_raw)
-        // var timeline = this.parseData(timeline_raw)
-        // var chartOptions = {type: 'bar',
-        //                     data: data}
-        // var chartNode = new ChartjsNode(800,400)
+    parseData(data) {
 
-        // return chartNode.drawChart()
-        // console.log(data)
-//           var canvas = Canvas.createCanvas(800, 800)
-//           var ctx = canvas.getContext('2d')
+        var date = []
+        var new_daily_cases = []
+        var new_daily_deaths = []
+        var total_cases = []
+        var total_recoveries = []
+        var total_deaths = []
 
-//         var datum = {
-//             labels: ["January", "February", "March", "April", "May", "June", "July"],
-//             datasets: [
-//                 {
-//                     label: "My First dataset",
-//                     fillColor: "rgba(220,220,220,0.2)",
-//                     strokeColor: "rgba(220,220,220,1)",
-//                     pointColor: "rgba(220,220,220,1)",
-//                     pointStrokeColor: "#fff",
-//                     pointHighlightFill: "#fff",
-//                     pointHighlightStroke: "rgba(220,220,220,1)",
-//                     data: [65, 59, 80, 81, 56, 55, 40]
-//                 },
-//                 {
-//                     label: "My Second dataset",
-//                     fillColor: "rgba(151,187,205,0.2)",
-//                     strokeColor: "rgba(151,187,205,1)",
-//                     pointColor: "rgba(151,187,205,1)",
-//                     pointStrokeColor: "#fff",
-//                     pointHighlightFill: "#fff",
-//                     pointHighlightStroke: "rgba(151,187,205,1)",
-//                     data: [28, 48, 40, 19, 86, 27, 90]
-//                 }
-//             ]
-//         };
-// var options = {scaleShowGridLines : true}
-// var myLineChart = new Chart(ctx).Line(datum, options);
-         
-//         canvas.toBuffer(function (err, buf) {
-//           if (err) throw err;
-//           fs.writeFile(__dirname + '/pie.png', buf, (error) => {console.log(error)});
-//         })
+        data.forEach(day => {
 
-        const options = {
-            labels: ['January', 'February', 'March', 'April'],
-            xAxes: [
-                {
-                    scaleLabel: {
-                        display: true,
-                        labelString: "OP/s (higher is better)"
-                    }
-                }
-            ],
-            datasets: [{
-                label: 'Bar Dataset',
-                data: [10, 20, 30, 40]
-            }, 
-            {
-                label: 'Line Dataset',
-                data: [50, 50, 50, 50],
+            date.push(day[0])
+            new_daily_cases.push(day[1].new_daily_cases)
+            new_daily_deaths.push(day[1].new_daily_deaths)
+            total_cases.push(day[1].total_cases)
+            total_recoveries.push(day[1].total_recoveries)
+            total_deaths.push(day[1].total_deaths)
+        })
 
-                // Changes this dataset to become a line
-                type: 'line'
-            }]
-        };
+        console.log(date,new_daily_cases,new_daily_deaths,total_cases,total_recoveries,total_deaths)
+
+        return {date,new_daily_cases,new_daily_deaths,total_cases,total_recoveries,total_deaths}
+    }
 
 
-        const ChartjsNode = require('chartjs-node');
-// 600x600 canvas size
-        var chartNode = new ChartjsNode(600, 600);
-        // var randomnumber=Math.random();
-        // var imagename = "testimage"+randomnumber+".png"
-        // module.exports = imagename
+    generate(data) {
 
-        // each api returns a Promise
-        chartNode.drawChart({
+        var chartNode = new ChartjsNode(800, 400);
+
+
+        return chartNode.drawChart({
                 type: 'bar',
                 data: {
-                    labels: ["2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"],
-                    datasets: [{
-                        label: 'Antal akkrediteringer',
-                        data: [57, 125, 249, 262, 271, 289, 227, 98, 126, 93, 90],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
+                    labels: data.date,
+                    datasets: [
+                    {
+                        label: 'new_daily_cases',
+                        data: data.new_daily_cases,
+                        yAxisID: 'A',
+                        type: 'line'
+                    },
+                    // {
+                    //     label: 'new_daily_deaths',
+                    //     data: timeline.new_daily_deaths,
+                    //     yAxisID: 'A',
+                    //     type: 'line'
+                    // },
+                    // {
+                    //     label: 'total_cases',
+                    //     data: timeline.total_cases,
+                    //     type: 'bar',
+                    //     yAxisID: 'B'
+                    // }
+                    // {
+                    //     label: 'total_recoveries',
+                    //     data: timeline.total_recoveries
+                    // },
+                    {
+                        label: 'total_deaths',
+                        data: data.total_deaths,
+                        type: 'bar',
+                        yAxisID: 'B',
+                        backgroundColor: 'rgba(200, 0, 50, 0.9)'
+                    }
+                    ]
                 },
                 options: {
                     layout: {
@@ -158,12 +144,20 @@ module.exports = class Virus
                         }
                     },
                     scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
+                        yAxes: [
+                        {
+                            id: 'A',
+                            type: 'linear',
+                            position: 'left'
+                        },
+                        {
+                            id: 'B',
+                            type: 'linear',
+                            position: 'right'
+                        }
+                        ]
+                    },
+                    plugins: plugin
                 }
             })
             .then(() => {
@@ -179,18 +173,109 @@ module.exports = class Virus
             .then(imageBuffer => {
                 // now you can modify the raw PNG buffer if you'd like
                 // want to write the image directly to the disk, no problem
-                return chartNode.writeImageToFile('image/png', './testimage.png');
+                return chartNode.writeImageToFile('image/png', chartPath);
             })
             .then(() => {
                chartNode.destroy() 
             });
 
-    // 600x600 canvas size
+    }
+
+    numberWithCommas(x) {
+        
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    percentage(x) {
+
+        return ( x > 0 ? '+' + x + '%' : x + '%')
 
     }
 
-    parseData(data) {
+    beautify(data) {
 
+
+        return {
+
+            date: data.date,
+            new_cases: this.numberWithCommas(data.new_cases),
+            new_death: this.numberWithCommas(data.new_death),
+            total_cases: this.numberWithCommas(data.total_cases),
+            total_deaths: this.numberWithCommas(data.total_deaths),
+            total_recoveries: this.numberWithCommas(data.total_recoveries),
+            new_cases_dod: this.percentage(data.new_cases_dod),
+            new_death_dod: this.percentage(data.new_death_dod),
+            total_cases_dod: this.percentage(data.total_cases_dod),
+            total_death_dod: this.percentage(data.total_death_dod),
+            total_recoveries_dod: this.percentage(data.total_recoveries_dod)
+        }
+    }
+
+    computeData(data) {
+
+        var latest = data.pop()
+        var beforeLatest = data.pop()
+
+        var date = latest[0]
+        var new_cases = latest[1].new_daily_cases
+        var new_death = latest[1].new_daily_deaths
+        var total_cases = latest[1].total_cases
+        var total_deaths = latest[1].total_deaths
+        var total_recoveries = latest[1].total_recoveries
+        var new_cases_dod = Math.round(((new_cases / beforeLatest[1].new_daily_cases) - 1 ) * 1000) / 10
+        var new_death_dod = Math.round(((new_death /beforeLatest[1].new_daily_deaths) - 1 ) * 1000) / 10
+        var total_cases_dod = Math.round(((total_cases / beforeLatest[1].total_cases) - 1 ) * 1000) / 10
+        var total_death_dod = Math.round(((total_deaths / beforeLatest[1].total_deaths) - 1 ) * 1000) / 10
+        var total_recoveries_dod = Math.round(((total_recoveries / beforeLatest[1].total_recoveries) - 1 ) * 1000) / 10
+
+
+        var result = {
+            date: date,
+            new_cases: new_cases,
+            new_death: new_death,
+            total_cases: total_cases,
+            total_deaths: total_deaths,
+            total_recoveries: total_recoveries,
+            new_cases_dod: new_cases_dod,
+            new_death_dod: new_death_dod,
+            total_cases_dod: total_cases_dod,
+            total_death_dod: total_death_dod,
+            total_recoveries_dod: total_recoveries_dod
+        }
+
+        return this.beautify(result)
+    }
+    
+    run(data) {
+
+        var timeline_raw = Object.entries(data.timelineitems[0])
+        timeline_raw.pop()
+        console.log(timeline_raw)
+        var timeline = this.parseData(timeline_raw)
+        var stats = this.computeData(timeline_raw)
+        console.log(stats)
+
+        this.generate(timeline)
+        .then(() => {
+
+            const embed = new RichEmbed()
+                .setTitle('CORANAVIRUS TRACKER: ' + this.country + ' (' + stats.date + ')')
+                .setColor(0xff0000)
+                .setDescription('damkus sucks cocks btw')
+                .addField('Today\'s new cases', stats.new_cases + ' (' + stats.new_cases_dod + ' DoD)', true)
+                .addBlankField(true)
+                .addField('Today\'s death', stats.new_death + ' (' + stats.new_death_dod + ' DoD)', true)
+                .addField('Total cases', stats.total_cases + ' (' + stats.total_cases_dod + ' DoD)', true)
+                .addBlankField(true)
+                .addField('Total death toll', stats.total_deaths + ' (' + stats.total_death_dod + ' DoD)', true)
+                .addField('Total recoveries', stats.total_recoveries + ' (' + stats.total_recoveries_dod + ' DoD)')
+                .setImage('attachment://chart.png')
+                .attachFile(chartPath)
+                .setFooter('Source: https://thevirustracker.com/')
+
+            this.sendMessage(embed)
+        })
+        .catch((err) => console.log(err))
 
     }
 

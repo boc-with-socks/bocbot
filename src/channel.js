@@ -233,7 +233,7 @@ module.exports = class Channel
                 break
 
             case 22:
-                new Virus(this._message)
+                new Virus(this._message, message.getOptions())
                 break
 
             case 99:
