@@ -151,12 +151,14 @@ module.exports = class Virus
                         {
                             id: 'A',
                             type: 'linear',
-                            position: 'left'
+                            position: 'left',
+                            scaleLabel: {display:true, labelString: '# New daily cases'}
                         },
                         {
                             id: 'B',
                             type: 'linear',
-                            position: 'right'
+                            position: 'right',
+                            scaleLabel: {display:true, labelString: '# Total deaths'}
                         }
                         ]
                     },
