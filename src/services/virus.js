@@ -2,7 +2,7 @@ const axios = require('axios')
 const Canvas = require('canvas')
 const ChartjsNode = require('chartjs-node')
 const {RichEmbed} = require('discord.js')
-const chartPath = __dirname  + '/../../../img/chart.png'
+const chartPath = __dirname  + '/../../img/chart.png'
 const plugin = {
         beforeDraw: function(chartInstance) {
           var ctx = chartInstance.chart.ctx;
