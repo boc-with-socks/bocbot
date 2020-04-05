@@ -58,7 +58,7 @@ module.exports = class Virus
 
         if (options.length == 1) {
 
-            if (this.countries.includes(options[0].toUpperCase())) return options[0]
+            if (this.countries.includes(options[0].toUpperCase())) return options[0].toUpperCase()
         }
 
         this.sendMessage('Country not found... defaulting to FR')
