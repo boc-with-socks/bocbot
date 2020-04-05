@@ -10,21 +10,7 @@ const plugin = {
           ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
         }
 }
-const countries = ['AF', 'AL', 'DZ', 'AO', 'AR', 'AM', 'AU', 'AT', 'AZ', 'BS'
-, 'BD', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BW', 'BR', 'BN', 'BG', 'BF'
-, 'BI', 'KH', 'CM', 'CA', 'CI', 'CF', 'TD', 'CL', 'CN', 'CO', 'CG', 'CD', 'CR'
-, 'HR', 'CU', 'CY', 'CZ', 'DK', 'DP', 'DJ', 'DO', 'CD', 'EC', 'EG', 'SV', 'GQ'
-, 'ER', 'EE', 'ET', 'FK', 'FJ', 'FI', 'FR', 'GF', 'TF', 'GA', 'GM', 'GE', 'DE'
-, 'GH', 'GR', 'GL', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN', 'HK', 'HU', 'IS', 'IN'
-, 'ID', 'IR', 'IQ', 'IE', 'IL', 'IT', 'JM', 'JP', 'JO', 'KZ', 'KE', 'KP', 'XK'
-, 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LT', 'LU', 'MK', 'MG', 'MW'
-, 'MY', 'ML', 'MR', 'MX', 'MD', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NP', 'NL'
-, 'NC', 'NZ', 'NI', 'NE', 'NG', 'KP', 'NO', 'OM', 'PK', 'PS', 'PA', 'PG', 'PY'
-, 'PE', 'PH', 'PL', 'PT', 'PR', 'QA', 'XK', 'RO', 'RU', 'RW', 'SA', 'SN', 'RS'
-, 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'KR', 'SS', 'ES', 'LK', 'SD', 'SR'
-, 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TT', 'TN'
-, 'TR', 'TM', 'AE', 'UG', 'GB', 'UA', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'EH'
-, 'YE', 'ZM', 'ZW']
+
 
 
 module.exports = class Virus
@@ -32,6 +18,22 @@ module.exports = class Virus
     constructor(message, options = []) {
 
         this.message = message
+
+        this.countries = ['AF', 'AL', 'DZ', 'AO', 'AR', 'AM', 'AU', 'AT', 'AZ', 'BS'
+        , 'BD', 'BY', 'BE', 'BZ', 'BJ', 'BT', 'BO', 'BA', 'BW', 'BR', 'BN', 'BG', 'BF'
+        , 'BI', 'KH', 'CM', 'CA', 'CI', 'CF', 'TD', 'CL', 'CN', 'CO', 'CG', 'CD', 'CR'
+        , 'HR', 'CU', 'CY', 'CZ', 'DK', 'DP', 'DJ', 'DO', 'CD', 'EC', 'EG', 'SV', 'GQ'
+        , 'ER', 'EE', 'ET', 'FK', 'FJ', 'FI', 'FR', 'GF', 'TF', 'GA', 'GM', 'GE', 'DE'
+        , 'GH', 'GR', 'GL', 'GT', 'GN', 'GW', 'GY', 'HT', 'HN', 'HK', 'HU', 'IS', 'IN'
+        , 'ID', 'IR', 'IQ', 'IE', 'IL', 'IT', 'JM', 'JP', 'JO', 'KZ', 'KE', 'KP', 'XK'
+        , 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LT', 'LU', 'MK', 'MG', 'MW'
+        , 'MY', 'ML', 'MR', 'MX', 'MD', 'MN', 'ME', 'MA', 'MZ', 'MM', 'NA', 'NP', 'NL'
+        , 'NC', 'NZ', 'NI', 'NE', 'NG', 'KP', 'NO', 'OM', 'PK', 'PS', 'PA', 'PG', 'PY'
+        , 'PE', 'PH', 'PL', 'PT', 'PR', 'QA', 'XK', 'RO', 'RU', 'RW', 'SA', 'SN', 'RS'
+        , 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'KR', 'SS', 'ES', 'LK', 'SD', 'SR'
+        , 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TT', 'TN'
+        , 'TR', 'TM', 'AE', 'UG', 'GB', 'UA', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'EH'
+        , 'YE', 'ZM', 'ZW']
 
         this.country = this.checkOptions(options)
 
@@ -56,7 +58,7 @@ module.exports = class Virus
 
         if (options.length == 1) {
 
-            if countries.includes(options[0]) return options[0]
+            if (this.countries.includes(options[0].toUpperCase())) return options[0]
         }
 
         this.sendMessage('Country not found... defaulting to FR')
@@ -107,7 +109,8 @@ module.exports = class Virus
                         label: 'new_daily_cases',
                         data: data.new_daily_cases,
                         yAxisID: 'A',
-                        type: 'line'
+                        type: 'line',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
                     },
                     // {
                     //     label: 'new_daily_deaths',
@@ -130,7 +133,7 @@ module.exports = class Virus
                         data: data.total_deaths,
                         type: 'bar',
                         yAxisID: 'B',
-                        backgroundColor: 'rgba(200, 0, 50, 0.9)'
+                        backgroundColor: 'rgba(200, 0, 50, 0.5)'
                     }
                     ]
                 },
