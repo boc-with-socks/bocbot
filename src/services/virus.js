@@ -44,9 +44,11 @@ module.exports = class Virus
         this.endpoint = "https://api.thevirustracker.com/free-api?countryTimeline=" + this.country
 
         this.load().then(data => {
-console.log('here')
-        console.log(data)
-        console.log(data.data)
+
+            console.log(data.data)
+            if (data.data == undefined || data.data == null || data.data.constructor !== Object) {
+                throw 'bad api (damkus s*cks)'
+            }
 
             this.run(data.data)
         }).catch(err => {
