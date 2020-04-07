@@ -53,6 +53,7 @@ module.exports = class Virus
             this.run(data.data)
         }).catch(err => {
 
+            this.sendMessage(err)
             console.log(err)
         })
     }
