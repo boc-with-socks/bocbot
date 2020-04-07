@@ -13,9 +13,8 @@ module.exports = class Prayer
 
         this.load().then(data => {
 
-            var days = data.data
+            var days = data.data.data
             var day = this.getToday(days)
-            console.log(day)
 
             this.run(day[0])
 
@@ -40,7 +39,7 @@ module.exports = class Prayer
 
     getToday(days) {
 
-        var todayFormatted = `${today.getUTCDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
+        var todayFormatted = `${('0' + today.getUTCDate().toString()).slice(-2)}-${('0' + (today.getMonth() + 1).toString()).slice(-2)}-${today.getFullYear()}`
 
         return days.filter(item => {
 
