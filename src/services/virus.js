@@ -45,7 +45,6 @@ module.exports = class Virus
 
         this.load().then(data => {
 
-            console.log(data.data)
             if (data.data == undefined || data.data == null || data.data.constructor !== Object) {
                 throw 'bad api (damkus s*cks)'
             }
@@ -53,7 +52,7 @@ module.exports = class Virus
             this.run(data.data)
         }).catch(err => {
 
-            this.sendMessage(err)
+            this.sendMessage('Error: ' + err)
             console.log(err)
         })
     }
