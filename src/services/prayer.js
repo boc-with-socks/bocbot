@@ -13,7 +13,7 @@ module.exports = class Prayer
 
         this.load().then(data => {
 
-            var days = data.data.data
+            var days = data.data
             var day = this.getToday(days)
             console.log(day)
 
