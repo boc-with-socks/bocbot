@@ -164,7 +164,8 @@ module.exports = class Channel
                 break
 
             case 9:
-                new Stats(this._message)
+                this.sendMessage("stop using this command")
+                // new Stats(this._message)
                 break
 
             case 10:
