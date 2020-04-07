@@ -42,9 +42,11 @@ module.exports = class Virus
         this.countryName = cnty.getCountryName(this.country)
 
         this.endpoint = "https://api.thevirustracker.com/free-api?countryTimeline=" + this.country
-        
-        this.load().then(data => {
 
+        this.load().then(data => {
+console.log('here')
+        console.log(data)
+        console.log(data.data)
 
             this.run(data.data)
         }).catch(err => {
