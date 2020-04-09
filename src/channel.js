@@ -90,10 +90,45 @@ module.exports = class Channel
 
             if (messageCounter%100 == 0) {
 
-                if (message.content.length > 15) {
+                if (Math.random() < 0.5) {
+                    
+                    if (message.content.length > 15) {
 
-                   new Owo(message)
-                   messageCounter++
+                       new Owo(message)
+                       messageCounter++
+                    }
+                } else {
+
+                    var rating = Math.floor(Math.random() * 100) / 10
+                    if (rating < 5 && rating >= 2) {
+
+                        this.sendMessage(`Bad post nigga, I rate it ${rating}/10`)
+                    }
+                    if (rating > 0 && rating < 2) {
+
+                        this.sendMessage(`That's a really shit post, I rate it ${rating}/10 (you're dumb btw)`)   
+                    }
+                    if (rating == 0) {
+
+                        this.sendMessage(`That's the worst post I've ever seen, I give it an unironic ${rating}/10`)
+                    }
+                    if (rating >= 5 && rating < 7) {
+
+                        this.sendMessage(`Alright, decent shitpost. I rate it ${rating}/10`)
+                    }
+                    if (rating >= 7 && rating < 9) {
+
+                        this.sendMessage(`Nice post gamer, keep it up. That's a ${rating}/10`)
+                    }
+                    if (rating >= 9 && rating <= 10) {
+
+                        this.sendMessage(`Now that's what I call a great post, giving you a ${rating}/10. Hope damkus liked it too (slurp)`)
+                    }
+                    if (rating < 0 || rating > 10) {
+
+                        this.sendMessage(`this post souldn't exist`)
+                    }
+                    messageCounter++
                 }
 
             } else {
