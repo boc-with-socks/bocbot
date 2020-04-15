@@ -224,7 +224,7 @@ module.exports = class Channel
                 break
 
             case 15:
-                this.sendMessage('current list of jobless nerds:\n-mercury\n-savi\n-porro\n-fip\n-savisaar\n-toomas\n-noelle')
+                this.sendMessage('current list of jobless nerds:\n-mercury (not anymore)\n-savi\n-porro\n-fip\n-savisaar\n-toomas\n-noelle')
                 break
 
             case 16:
