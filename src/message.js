@@ -103,6 +103,11 @@ module.exports = class Message
         return this._raw
     }
 
+    getAuthor() {
+
+        return this._author
+    }
+
     getOptions() {
 
         if (this.getCommand()) {

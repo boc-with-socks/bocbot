@@ -273,7 +273,7 @@ module.exports = class Channel
                 break
 
             case 23:
-                this.sendMessage(`${this._message.author.username} just rolled a ${~~(Math.random() * 100)}`)
+                this.sendMessage(`${message.getAuthor().username} just rolled a ${~~(Math.random() * 100)}`)
                 break
 
             case 99:
