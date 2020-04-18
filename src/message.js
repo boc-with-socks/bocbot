@@ -82,6 +82,9 @@ module.exports = class Message
                 case 'virus':
                     return 22
 
+                case 'roll':
+                    return 23
+
                 case 'help':
                     return 99
 

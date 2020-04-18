@@ -272,6 +272,10 @@ module.exports = class Channel
                 new Virus(this._message, message.getOptions())
                 break
 
+            case 23:
+                this.sendMessage(`${this._message.author.username} just rolled a ${~~(Math.random() * 100)}`)
+                break
+
             case 99:
                 this.sendMessage(`commands: ${commandList}`)
                 break
