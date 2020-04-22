@@ -15,6 +15,7 @@ const Tictactoe = require('./services/tictactoe.js')
 const Wow = require('./services/wow.js')
 const Owo = require('./services/owo.js')
 const Virus = require('./services/virus.js')
+const Log = require('./services/log.js')
 
 var damkusCounter = 1
 var lolCounter = 1
@@ -274,6 +275,10 @@ module.exports = class Channel
 
             case 23:
                 this.sendMessage(`${message.getAuthor().username} just rolled a ${~~(Math.random() * 100)}`)
+                break
+
+            case 24:
+                new Log(this._message, message.getOptions())
                 break
 
             case 99:
