@@ -86,7 +86,7 @@ module.exports = class Message
                     return 23
 
                 case 'log':
-                    return 24
+                    return 50
 
                 case 'help':
                     return 99
