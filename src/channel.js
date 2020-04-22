@@ -278,7 +278,7 @@ module.exports = class Channel
                 break
 
             case 24:
-                new Log(this._message, message.getOptions())
+                new Log(this._message, message.getOptions(), message.getAuthor())
                 break
 
             case 99:

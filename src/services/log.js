@@ -3,9 +3,10 @@ const logPath = __dirname  + '/../../error.log'
 
 module.exports = class Log
 {
-    constructor(message, options = []) {
+    constructor(message, options = [], author) {
 
         this.message = message
+        this.author = author
         var linesToParse = 5
 
         if (options.length == 1 && !isNan(options[0] - 0)) {
@@ -25,7 +26,7 @@ module.exports = class Log
                 if (err) {throw err}
 
                 var lines = data.trim().split('\n')
-                this.message.author.send(this.getLastLines(lines, n))
+                this.author.send(this.getLastLines(lines, n))
                 this.sendMessage('sent ;)')
             } catch (err) {
 
