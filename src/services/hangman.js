@@ -272,11 +272,11 @@ module.exports = class Hangman
 
     checkEnd(step) {
 
-        if (step >= _hangmanSteps.length) {
+        if (step >= _hangmanSteps.length && !this._stopping) {
 
             this.lose()
         } else
-        if (step < _hangmanSteps.length && !this.wordToShow.includes('_')) {
+        if (step < _hangmanSteps.length && !this.wordToShow.includes('_') && !this._stopping) {
 
             this.win()
         } else return 0
