@@ -16,6 +16,7 @@ const Wow = require('./services/wow.js')
 const Owo = require('./services/owo.js')
 const Virus = require('./services/virus.js')
 const Log = require('./services/log.js')
+const Hangman = require('./services/hangman.js')
 
 var damkusCounter = 1
 var lolCounter = 1
@@ -54,6 +55,17 @@ module.exports = class Channel
         if (this._game != null && this._game.isRunning()) {
 
             this._game.processEvent(message, user)
+        }
+        return null
+    }
+
+    processDM(message) {
+
+        // console.log(message)
+
+        if (this._game != null && this._game.isRunning()) {
+
+            this._game.processDM(message.getMessage())
         }
         return null
     }
@@ -279,6 +291,19 @@ module.exports = class Channel
 
             case 24:
                 new Log(this._message, message.getOptions(), message.getAuthor())
+                break
+
+            case 25:
+                if (this._game == null || !this._game.isRunning()) {
+
+                    // this.sendMessage("Hangman starting")
+                    this._game = null
+                    this._game = new Hangman(this._message, message.getAuthor())
+                }
+                else {
+
+                    this.sendMessage("Game already running")
+                }
                 break
 
             case 99:

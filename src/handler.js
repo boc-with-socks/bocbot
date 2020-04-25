@@ -10,9 +10,21 @@ module.exports = class Handler
 
     process(message) {
 
-        var channelIndex = this.getChannelIndex(message)
+        if(message.author.bot == true) return 0
+        
+        if(message.channel.type == 'dm') {
 
-        this.channels[channelIndex].process(new Message(message))
+            for (var i = 0; i < this.channels.length; i++) {
+
+                this.channels[i].processDM(new Message(message))
+            }
+        } else {
+            
+            var channelIndex = this.getChannelIndex(message)
+
+            this.channels[channelIndex].process(new Message(message))
+        }
+
     }
 
     processEvent(message, user) {
