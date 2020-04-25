@@ -64,6 +64,7 @@ module.exports = class Hangman
             this.win()
         } else {
 
+            this.lose()
             this.isTrySuccess = false
         }
 
@@ -128,7 +129,7 @@ module.exports = class Hangman
             } else 
             if (this.hasTried) {
                 
-                if (!this.isTrySuccess) hangStep = Math.min(hangStep + 1, _hangmanSteps.length - 1)
+                if (!this.isTrySuccess) hangStep = Math.min(hangStep + 1, _hangmanSteps.length)
                 this.updateEmbed(hangStep)
                 this.embedMessage.edit(this.embedToSend)
 
@@ -258,12 +259,18 @@ module.exports = class Hangman
         this._stopping = true
     }
 
+    lose() {
+
+        this.sendMessage(`You lost`)
+        this.wordToShow = this.wordToGuess
+        this._stopping = true
+    }
+
     checkEnd(step) {
 
         if (step >= _hangmanSteps.length) {
 
-            this.sendMessage(`You lost`)
-            this._stopping = true
+            this.lose()
         } else
         if (step < _hangmanSteps.length && !this.wordToShow.includes('_')) {
 
