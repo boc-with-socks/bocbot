@@ -45,8 +45,12 @@ module.exports = class Hangman
 
     process(message) {
 
-        if (this.wordToGuess == null || message.author.id != this.playerList[this.playerTurnIdx].id || this.hasTried || this.isLoading) return 0
-
+        if (this.wordToGuess == null || this.hasTried || this.isLoading || this.playerList.length < 1) {
+            return 0
+        } else if (message.author.id != this.playerList[this.playerTurnIdx].id) {
+            return 0
+        }
+        
         if (message.content.length > 1) {
 
             this.guessWord(message.content)
