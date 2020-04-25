@@ -212,7 +212,7 @@ module.exports = class Hangman
 
     beginSignup() {
 
-        var i = 60
+        var i = 30
         this.sendMessage(`Hangman is initiating, register by clicking emoji... ${i}s remaining`).then((msg) => {
 
             this.signupMessage = msg
