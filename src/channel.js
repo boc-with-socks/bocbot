@@ -17,11 +17,12 @@ const Owo = require('./services/owo.js')
 const Virus = require('./services/virus.js')
 const Log = require('./services/log.js')
 const Hangman = require('./services/hangman.js')
+const Aoe = require('./services/aoe.js')
 
 var damkusCounter = 1
 var lolCounter = 1
 var messageCounter = 1
-var commandList = "trivia, stop, talk, categories, lol, haha, gay, xd, uhbijnokn, dota, merc, bible, cat, damkus, job, savi, boc, affly, misioh, tictac, help"
+var commandList = "trivia, stop, talk, categories, lol, haha, gay, xd, uhbijnokn, dota, merc, bible, cat, damkus, job, savi, boc, affly, misioh, tictac, aoe, help"
 
 module.exports = class Channel
 {
@@ -304,6 +305,10 @@ module.exports = class Channel
 
                     this.sendMessage("Game already running")
                 }
+                break
+
+            case 26:
+                new Aoe(this._message, message.getAuthor(), message.getOptions())
                 break
 
             case 99:

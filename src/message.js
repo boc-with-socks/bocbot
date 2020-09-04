@@ -91,6 +91,9 @@ module.exports = class Message
                 case 'hangman':
                     return 25
 
+                case 'aoe':
+                    return 26
+
                 case 'help':
                     return 99
 
