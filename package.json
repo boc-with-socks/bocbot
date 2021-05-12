@@ -14,7 +14,7 @@
   "dependencies": {
     "axios": "^0.18.1",
     "canvas": "^2.6.1",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs-node": "^1.7.1",
     "csv-writer": "^1.6.0",
     "discord.js": "^11.6.3",
